@@ -13,4 +13,13 @@ public class User {
     private String nick;
     private String email;
 
+    public static User fromDTO(UserDTO userDTO){
+        User newUser = new User();
+        newUser.firstName = userDTO.getFirstName();
+        newUser.lastName = userDTO.getLastName();
+        newUser.nick = userDTO.getNick();
+        newUser.email = userDTO.getEmail();
+        return newUser;
+    }
+
 }
