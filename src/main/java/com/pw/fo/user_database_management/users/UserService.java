@@ -9,4 +9,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    public void addUser(UserDTO userDTO){
+        userRepository.save(User.fromDTO(userDTO));
+    }
+
 }
