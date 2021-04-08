@@ -13,6 +13,16 @@ public class User {
     private String nick;
     private String email;
 
+    public User(String firstName, String lastName, String nick, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.nick = nick;
+        this.email = email;
+    }
+
+    public User() {
+    }
+
     public static User fromDTO(UserDTO userDTO){
         User newUser = new User();
         newUser.firstName = userDTO.getFirstName();
