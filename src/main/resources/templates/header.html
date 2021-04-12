@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:fragment="header-css">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/footer.css}"/>
+    <link rel="stylesheet" th:href="@{/css/navbar.css}"/>
+  </div>
+</head>
+  <body>
+    <div th:fragment="header">
+      <nav class="my-navbar">
+        <ul class="nav-ul">
+          <li class="nav-li">
+            <a class="nav-li-a" href="/users">Users</a>
+          </li>
+          <li class="nav-li">
+            <a class="nav-li-a" href="/addUser">Add User</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </body>
+</html>

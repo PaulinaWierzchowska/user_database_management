@@ -1,0 +1,19 @@
+html{
+    font-family: Tahoma;
+    line-height:1.15;
+    -webkit-text-size-adjust:100%;
+    -webkit-tap-highlight-color:transparent;
+}
+body {
+    margin-top: 85px;
+    background: #000000;
+}
+.body-container{
+    height: 750px;
+}
+.index{
+    font: 550 18px Tahoma;
+    color: white;
+    text-align: center;
+    z-index: 1030;
+}

@@ -4,7 +4,9 @@ import com.pw.fo.user_database_management.users.User;
 import com.pw.fo.user_database_management.users.UserRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DataSeed implements InitializingBean {
 
     @Autowired
@@ -19,24 +21,22 @@ public class DataSeed implements InitializingBean {
         if (userRepository.count() != 0) {
             return;
         }
-        User user1 = new User("Palina",
+        User user1 = new User("Paulina",
                 "Wierzchowska",
-                "paula@paula.pl",
-                "Paula");
+                "Paula",
+                "paula@paula.pl");
         userRepository.save(user1);
 
         User user2 = new User("Joanna",
                 "Kowalska",
-                "asia@asia.pl",
-                "Asia");
+                "Asia",
+                "asia@asia.pl");
         userRepository.save(user2);
 
         User user3 = new User("Michał",
                 "Nowak",
-                "mike@mike.pl",
-                "Mike");
+                "Mike",
+                "mike@mike.pl");
         userRepository.save(user3);
     }
-
-
 }

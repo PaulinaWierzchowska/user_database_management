@@ -8,10 +8,11 @@
         <version>2.3.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>pl.sda</groupId>
-    <artifactId>finalapp</artifactId>
+    <groupId>com.pl.fo</groupId>
+    <artifactId>user_database_management</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>finalapp</name>
+    <name>user_database_management</name>
+    <packaging>war</packaging>
     <description>Demo project for Spring Boot</description>
 
     <properties>

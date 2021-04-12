@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home page</title>
+    <div th:replace="header :: header-css"></div>
+</head>
+<body>
+    <div th:replace="header :: header"></div>
+    <div class="body-container">
+        <div class="index">
+            <br>
+            <p> Aplikacja ma służyć do zarządzania bazą danych użytkowników.</p>
+            <p>Każdy użytkownik powinien zawierać:</p>
+            <p>Imię, Nazwisko, Nick i Adres Email</p>
+            <br>
+            <p>Aplikacja powinna udostępnić REST API które pozwala na:</p>
+            <p> - dodanie nowego użytkownika</p>
+            <p> - edycję</p>
+            <p>- usunięcie użytkownika</p>
+            <p> - wyszukanie po id</p>
+            <p>- wyszukanie po nicku</p>
+            <p>- wyszukanie po podanej frazie która może znajdować się w Imieniu, Nazwisku lub Nicku użytkownika</p>
+        </div>
+    </div>
+    <div th:replace="footer :: footer"></div>
+</body>
+</html>
