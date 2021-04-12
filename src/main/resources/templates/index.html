@@ -8,22 +8,24 @@
 </head>
 <body>
     <div th:replace="header :: header"></div>
-    <div class="body-container">
-        <div class="index">
-            <br>
-            <p> Aplikacja ma służyć do zarządzania bazą danych użytkowników.</p>
-            <p>Każdy użytkownik powinien zawierać:</p>
-            <p>Imię, Nazwisko, Nick i Adres Email</p>
-            <br>
-            <p>Aplikacja powinna udostępnić REST API które pozwala na:</p>
-            <p> - dodanie nowego użytkownika</p>
-            <p> - edycję</p>
-            <p>- usunięcie użytkownika</p>
-            <p> - wyszukanie po id</p>
-            <p>- wyszukanie po nicku</p>
-            <p>- wyszukanie po podanej frazie która może znajdować się w Imieniu, Nazwisku lub Nicku użytkownika</p>
+        <div class="body-container">
+            <div class="form-container">
+                <div class="form-form">
+                    <div class="form-input">
+                        <p>The application is intended to be used to manage the user database.</p>
+                        <p>Each user should have a first name, last name, nickname and email.</p>
+                        <br>
+                        <p>The application should allow you to:</p>
+                        <p>- adding a new user</p>
+                        <p>- editing an existing user</p>
+                        <p>- removal of an existing user</p>
+                        <p>- search user by id</p>
+                        <p>- search user by nickname</p>
+                        <p>- search user by the given phrase, which may be in the first name, last name or nickname of the user</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
     <div th:replace="footer :: footer"></div>
 </body>
 </html>

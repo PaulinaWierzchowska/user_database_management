@@ -32,5 +32,12 @@ public class User {
         return newUser;
     }
 
-
+    public UserDTO toDTO() {
+        return  new UserDTO(
+                id,
+                firstName,
+                lastName,
+                nick,
+                email);
+    }
 }

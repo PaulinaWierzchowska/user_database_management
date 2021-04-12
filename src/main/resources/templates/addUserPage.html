@@ -9,13 +9,15 @@
 <body>
   <div th:replace="header :: header"></div>
   <div class="body-container">
-    <form action="addUser" method="post">
-      <input name="firstName" placeholder="First Name"><br>
-      <input name="lastName" placeholder="Last Name"><br>
-      <input name="nick" placeholder="Nick"><br>
-      <input name="email" placeholder="Email"><br>
-      <button>Add user</button>
+    <div class="form-container">
+    <form class="form-form" action="addUser" method="post">
+      <input class="form-input" name="firstName" placeholder="First Name"><br>
+      <input class="form-input" name="lastName" placeholder="Last Name"><br>
+      <input class="form-input" name="nick" placeholder="Nick"><br>
+      <input class="form-input" name="email" placeholder="Email"><br>
+      <button class="form-button">Add user</button>
     </form>
+  </div>
   </div>
   <div th:replace="footer :: footer"></div>
 </body>
