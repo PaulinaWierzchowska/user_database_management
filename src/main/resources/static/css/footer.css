@@ -1,0 +1,36 @@
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    z-index: 1030;
+}
+.footer-container{
+    width: 100%;
+}
+.footer-column{
+    width: 32%;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    font: 550 18px Tahoma;
+}
+a.footer-column:link{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+a.footer-column:visited{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+a.footer-column:hover{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+a.footer-column:active{
+    color: #FFFFFF;
+    text-decoration: none;
+}
