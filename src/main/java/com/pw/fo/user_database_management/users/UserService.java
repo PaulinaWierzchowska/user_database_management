@@ -16,16 +16,53 @@ public class UserService {
         userRepository.save(User.fromDTO(userDTO));
     }
 
-    public UserDTO findUserById(Integer userId) {
+    public List<UserDTO> findUserById(Integer userId) {
+        if(userId!= null && userId!=0 ){
+            return userRepository.findUserById(userId).stream()
+                    .map(e -> e.toDTO())
+                    .collect(Collectors.toList());
+        } else {
+            return allUsers();
+        }
+    }
+
+    public UserDTO findUserDTOById(Integer userId) {
         return userRepository.findById(userId)
-                .map(e -> e.toDTO())
+                .map(p -> p.toDTO())
                 .orElseThrow(() -> new UserNotFoundException(userId));
+    }
+
+    public List<UserDTO> findUsersByPhrase(String userPhrase) {
+        if (userPhrase!= null && !userPhrase.isBlank()) {
+            return userRepository.findUsersByPhrase(userPhrase).stream()
+                    .map(e -> e.toDTO())
+                    .collect(Collectors.toList());
+        } else {
+            return allUsers();
+        }
+    }
+
+    public List<UserDTO> findUsersByNick(String userNick) {
+        if (userNick!= null && !userNick.isBlank()) {
+            return userRepository.findUsersByNick(userNick).stream()
+                    .map(e -> e.toDTO())
+                    .collect(Collectors.toList());
+        } else {
+            return allUsers();
+        }
     }
 
     public List<UserDTO> allUsers() {
         return userRepository.findAll().stream()
                 .map(e -> e.toDTO())
                 .collect(Collectors.toList());
+    }
+
+    public void editUser(UserDTO userDTO) {
+        User user = userRepository.findById(userDTO.getId())
+                .orElseThrow(() -> new UserNotFoundException(userDTO.getId()));
+        user.apply(userDTO);
+        userRepository.save(user);
     }
 
 

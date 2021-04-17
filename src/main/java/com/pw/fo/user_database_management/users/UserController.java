@@ -3,9 +3,7 @@ package com.pw.fo.user_database_management.users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -34,14 +32,47 @@ public class UserController {
     }
 
     @GetMapping("/userById")
-    public String usersIdList(){
+    public String usersIdList(Model model,
+                              @RequestParam(required = false) Integer userId){
+        model.addAttribute("userId", userId);
+        model.addAttribute("usersByIdList", userService.findUserById(userId));
         return "findByIdPage";
     }
 
-    @PostMapping("/userById")
-    public String userFindById(Model model,
-                               @RequestParam Integer userId){
-        model.addAttribute("userById", userService.findUserById(userId));
-        return "redirect:/userById";
+    @GetMapping("/userByPhrase")
+    public String usersPharseList(Model model,
+                                  @RequestParam(required = false) String userPhrase){
+        model.addAttribute("userPhrase", userPhrase);
+        model.addAttribute("usersByPhraseList", userService.findUsersByPhrase(userPhrase));
+        return "findByPhrasePage";
     }
+
+    @GetMapping("/userByNick")
+    public String usersNickList(Model model,
+                                  @RequestParam(required = false) String userNick){
+        model.addAttribute("userNick", userNick);
+        model.addAttribute("usersByNickList", userService.findUsersByNick(userNick));
+        return "findByNickPage";
+    }
+
+    @GetMapping("/usersEdit")
+    public String usersEditList(Model model,
+                                @RequestParam(required = false) Integer userEditId){
+        model.addAttribute("userId", userEditId);
+        model.addAttribute("usersEditList", userService.allUsers());
+        return "editUsersPage";
+    }
+
+    @GetMapping("/usersEdit/{id}")
+    public String editForm(@PathVariable(name = "id") Integer userEditId, Model model){
+        model.addAttribute("usersEdit", userService.findUserDTOById(userEditId));
+        return "userEditPage";
+    }
+
+    @PostMapping("/usersEdit/{id}")
+    public String editUser (@ModelAttribute UserDTO user, @PathVariable(name = "id") Integer userEditId){
+        userService.editUser(user);
+        return "redirect:/usersEdit";
+    }
+
 }

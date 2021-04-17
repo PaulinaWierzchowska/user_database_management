@@ -40,4 +40,12 @@ public class User {
                 nick,
                 email);
     }
+
+    public void apply(UserDTO userDTO) {
+        this.id = userDTO.getId();
+        this.firstName = userDTO.getFirstName();
+        this.lastName = userDTO.getLastName();
+        this.nick = userDTO.getNick();
+        this.email = userDTO.getEmail();
+    }
 }
