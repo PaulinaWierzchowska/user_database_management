@@ -11,6 +11,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/users")
+    public String usersList(Model model){
+        model.addAttribute("usersList", userService.allUsers());
+        return "usersPage";
+    }
+
     @GetMapping(value = "/addUser")
     public String addUsers(){
         return "addUserPage";
@@ -25,10 +31,38 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/users")
-    public String usersList(Model model){
-        model.addAttribute("usersList", userService.allUsers());
-        return "usersPage";
+    @GetMapping("/usersEdit")
+    public String usersEditList(Model model,
+                                @RequestParam(required = false) Integer userEditId){
+        model.addAttribute("userId", userEditId);
+        model.addAttribute("usersEditList", userService.allUsers());
+        return "editUsersPage";
+    }
+
+    @GetMapping("/usersEdit/{id}")
+    public String editForm(@PathVariable(name = "id") Integer userEditId, Model model){
+        model.addAttribute("usersEdit", userService.findUserDTOById(userEditId));
+        return "userEditPage";
+    }
+
+    @PostMapping("/usersEdit/{id}")
+    public String editUser (@ModelAttribute UserDTO user, @PathVariable(name = "id") Integer userEditId){
+        userService.editUser(user);
+        return "redirect:/usersEdit";
+    }
+
+    @GetMapping("/usersRemove")
+    public String usersRemoveList(Model model,
+                                @RequestParam(required = false) Integer userRemoveId){
+        model.addAttribute("userId", userRemoveId);
+        model.addAttribute("usersRemoveList", userService.allUsers());
+        return "usersRemovePage";
+    }
+
+    @GetMapping("/usersRemove/{id}")
+    public String removeForm(@PathVariable(name = "id") Integer userRemoveId){
+        userService.removeUser(userService.findUserDTOById(userRemoveId));
+        return "redirect:/usersRemove";
     }
 
     @GetMapping("/userById")
@@ -55,24 +89,6 @@ public class UserController {
         return "findByNickPage";
     }
 
-    @GetMapping("/usersEdit")
-    public String usersEditList(Model model,
-                                @RequestParam(required = false) Integer userEditId){
-        model.addAttribute("userId", userEditId);
-        model.addAttribute("usersEditList", userService.allUsers());
-        return "editUsersPage";
-    }
 
-    @GetMapping("/usersEdit/{id}")
-    public String editForm(@PathVariable(name = "id") Integer userEditId, Model model){
-        model.addAttribute("usersEdit", userService.findUserDTOById(userEditId));
-        return "userEditPage";
-    }
-
-    @PostMapping("/usersEdit/{id}")
-    public String editUser (@ModelAttribute UserDTO user, @PathVariable(name = "id") Integer userEditId){
-        userService.editUser(user);
-        return "redirect:/usersEdit";
-    }
 
 }
