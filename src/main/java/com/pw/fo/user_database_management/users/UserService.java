@@ -26,9 +26,15 @@ public class UserService {
         }
     }
 
-    public List<UserDTO> findUsersByPharse(String userPharse) {
-        if (userPharse!= null && !userPharse.isBlank()) {
-            return userRepository.findUsersByPharse(userPharse).stream()
+    public UserDTO findUserDTOById(Integer userId) {
+        return userRepository.findById(userId)
+                .map(p -> p.toDTO())
+                .orElseThrow(() -> new UserNotFoundException(userId));
+    }
+
+    public List<UserDTO> findUsersByPhrase(String userPhrase) {
+        if (userPhrase!= null && !userPhrase.isBlank()) {
+            return userRepository.findUsersByPhrase(userPhrase).stream()
                     .map(e -> e.toDTO())
                     .collect(Collectors.toList());
         } else {
@@ -50,6 +56,13 @@ public class UserService {
         return userRepository.findAll().stream()
                 .map(e -> e.toDTO())
                 .collect(Collectors.toList());
+    }
+
+    public void editUser(UserDTO userDTO) {
+        User user = userRepository.findById(userDTO.getId())
+                .orElseThrow(() -> new UserNotFoundException(userDTO.getId()));
+        user.apply(userDTO);
+        userRepository.save(user);
     }
 
 

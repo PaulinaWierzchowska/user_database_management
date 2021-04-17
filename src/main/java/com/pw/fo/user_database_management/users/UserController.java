@@ -39,12 +39,12 @@ public class UserController {
         return "findByIdPage";
     }
 
-    @GetMapping("/userByPharse")
+    @GetMapping("/userByPhrase")
     public String usersPharseList(Model model,
-                                  @RequestParam(required = false) String userPharse){
-        model.addAttribute("userPharse", userPharse);
-        model.addAttribute("usersByPharseList", userService.findUsersByPharse(userPharse));
-        return "findByPharsePage";
+                                  @RequestParam(required = false) String userPhrase){
+        model.addAttribute("userPhrase", userPhrase);
+        model.addAttribute("usersByPhraseList", userService.findUsersByPhrase(userPhrase));
+        return "findByPhrasePage";
     }
 
     @GetMapping("/userByNick")
@@ -53,6 +53,26 @@ public class UserController {
         model.addAttribute("userNick", userNick);
         model.addAttribute("usersByNickList", userService.findUsersByNick(userNick));
         return "findByNickPage";
+    }
+
+    @GetMapping("/usersEdit")
+    public String usersEditList(Model model,
+                                @RequestParam(required = false) Integer userEditId){
+        model.addAttribute("userId", userEditId);
+        model.addAttribute("usersEditList", userService.allUsers());
+        return "editUsersPage";
+    }
+
+    @GetMapping("/usersEdit/{id}")
+    public String editForm(@PathVariable(name = "id") Integer userEditId, Model model){
+        model.addAttribute("usersEdit", userService.findUserDTOById(userEditId));
+        return "userEditPage";
+    }
+
+    @PostMapping("/usersEdit/{id}")
+    public String editUser (@ModelAttribute UserDTO user, @PathVariable(name = "id") Integer userEditId){
+        userService.editUser(user);
+        return "redirect:/usersEdit";
     }
 
 }
