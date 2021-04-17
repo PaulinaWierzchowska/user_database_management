@@ -36,6 +36,16 @@ public class UserService {
         }
     }
 
+    public List<UserDTO> findUsersByNick(String userNick) {
+        if (userNick!= null && !userNick.isBlank()) {
+            return userRepository.findUsersByNick(userNick).stream()
+                    .map(e -> e.toDTO())
+                    .collect(Collectors.toList());
+        } else {
+            return allUsers();
+        }
+    }
+
     public List<UserDTO> allUsers() {
         return userRepository.findAll().stream()
                 .map(e -> e.toDTO())

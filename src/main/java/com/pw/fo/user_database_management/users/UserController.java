@@ -43,8 +43,16 @@ public class UserController {
     public String usersPharseList(Model model,
                                   @RequestParam(required = false) String userPharse){
         model.addAttribute("userPharse", userPharse);
-        model.addAttribute("usersByPharse", userService.findUsersByPharse(userPharse));
+        model.addAttribute("usersByPharseList", userService.findUsersByPharse(userPharse));
         return "findByPharsePage";
+    }
+
+    @GetMapping("/userByNick")
+    public String usersNickList(Model model,
+                                  @RequestParam(required = false) String userNick){
+        model.addAttribute("userNick", userNick);
+        model.addAttribute("usersByNickList", userService.findUsersByNick(userNick));
+        return "findByNickPage";
     }
 
 }
