@@ -12,8 +12,27 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    public List<UserDTO> allUsers() {
+        return userRepository.findAll().stream()
+                .map(e -> e.toDTO())
+                .collect(Collectors.toList());
+    }
+
     public void addUser(UserDTO userDTO) {
         userRepository.save(User.fromDTO(userDTO));
+    }
+
+    public void editUser(UserDTO userDTO) {
+        User user = userRepository.findById(userDTO.getId())
+                .orElseThrow(() -> new UserNotFoundException(userDTO.getId()));
+        user.apply(userDTO);
+        userRepository.save(user);
+    }
+
+    public void removeUser(UserDTO userDTO) {
+        User user = userRepository.findById(userDTO.getId())
+                .orElseThrow(() -> new UserNotFoundException(userDTO.getId()));
+        userRepository.delete(user);
     }
 
     public List<UserDTO> findUserById(Integer userId) {
@@ -51,19 +70,4 @@ public class UserService {
             return allUsers();
         }
     }
-
-    public List<UserDTO> allUsers() {
-        return userRepository.findAll().stream()
-                .map(e -> e.toDTO())
-                .collect(Collectors.toList());
-    }
-
-    public void editUser(UserDTO userDTO) {
-        User user = userRepository.findById(userDTO.getId())
-                .orElseThrow(() -> new UserNotFoundException(userDTO.getId()));
-        user.apply(userDTO);
-        userRepository.save(user);
-    }
-
-
 }
