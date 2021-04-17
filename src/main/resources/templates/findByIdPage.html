@@ -11,7 +11,7 @@
 <div class="body-container">
     <div class="table-container">
         <div class="table-form">
-            <form action="userById" method="post">
+            <form action="userById" method="get">
                 <input class="table-input" th:value="${userId}" name="userId" placeholder="Find">
                 <button class="table-button">Find user</button>
                 <table>
@@ -22,7 +22,7 @@
                         <th class="table-input">Nick</th>
                         <th class="table-input">Email</th>
                     </tr>
-                    <tr class="table-input" th:each="u : ${userById}">
+                    <tr class="table-input" th:each="u : ${usersByIdList}">
                         <td class="table-input" th:text="${u.id}">ID</td>
                         <td class="table-input" th:text="${u.firstName}">First Name</td>
                         <td class="table-input" th:text="${u.lastName}">Last Name</td>

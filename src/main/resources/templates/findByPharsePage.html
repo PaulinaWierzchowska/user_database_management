@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Find User By Pharse</title>
+  <div th:replace="header :: header-css"></div>
+</head>
+<body>
+<div th:replace="header :: header"></div>
+<div class="body-container">
+  <div class="table-container">
+    <div class="table-form">
+      <form action="userByPharse" method="get">
+        <input class="table-input" th:value="${userPharse}" name="userPharse" placeholder="Find">
+        <button class="table-button">Find user</button>
+        <table>
+          <tr class="table-input">
+            <th class="table-input">ID</th>
+            <th class="table-input">First Name</th>
+            <th class="table-input">Last Name</th>
+            <th class="table-input">Nick</th>
+            <th class="table-input">Email</th>
+          </tr>
+          <tr class="table-input" th:each="u : ${usersByPharse}">
+            <td class="table-input" th:text="${u.id}">ID</td>
+            <td class="table-input" th:text="${u.firstName}">First Name</td>
+            <td class="table-input" th:text="${u.lastName}">Last Name</td>
+            <td class="table-input" th:text="${u.nick}">Nick</td>
+            <td class="table-input" th:text="${u.email}">Email</td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+<div th:replace="footer :: footer"></div>
+</body>
+</html>

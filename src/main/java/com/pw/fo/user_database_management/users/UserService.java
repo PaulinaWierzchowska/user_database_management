@@ -16,10 +16,24 @@ public class UserService {
         userRepository.save(User.fromDTO(userDTO));
     }
 
-    public UserDTO findUserById(Integer userId) {
-        return userRepository.findById(userId)
-                .map(e -> e.toDTO())
-                .orElseThrow(() -> new UserNotFoundException(userId));
+    public List<UserDTO> findUserById(Integer userId) {
+        if(userId!= null && userId!=0 ){
+            return userRepository.findUserById(userId).stream()
+                    .map(e -> e.toDTO())
+                    .collect(Collectors.toList());
+        } else {
+            return allUsers();
+        }
+    }
+
+    public List<UserDTO> findUsersByPharse(String userPharse) {
+        if (userPharse!= null && !userPharse.isBlank()) {
+            return userRepository.findUsersByPharse(userPharse).stream()
+                    .map(e -> e.toDTO())
+                    .collect(Collectors.toList());
+        } else {
+            return allUsers();
+        }
     }
 
     public List<UserDTO> allUsers() {
